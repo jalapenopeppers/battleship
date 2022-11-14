@@ -1,4 +1,5 @@
 const Player = require('./player.js');
+import { DOMInteraction } from './dominteraction.js';
 
 const Gameloop = (() => {
   const p1 = Player();
@@ -24,9 +25,15 @@ const Gameloop = (() => {
     }
     return false;
   }
-  while (!checkWinner()) {
-    // get player 1 input and send to player 2 board
-    // get player 2 input and send to player 1 board
+  // while (!checkWinner()) {
+  //   // get player 1 input and send to player 2 board
+  //   // get player 2 input and send to player 1 board
+  // }
+  DOMInteraction.createGrids(p1, p2);
+
+  return {
+    p1,
+    p2,
   }
 })();
 

@@ -1,3 +1,46 @@
-h1 {
-  color: red;
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+html {
+  box-sizing: content-box;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+}
+
+.game-container {
+  display: grid;
+  grid-template-rows: 2fr 1fr 4fr 1fr 1fr;
+  justify-items: center;
+  align-content: space-between;
+}
+
+.p1-grid-container {
+  width: 300px;
+  height: 300px;
+  display: grid;
+  grid-template: repeat(10, 1fr) / repeat(10, 1fr);
+}
+
+.grid-square {
+  border: 1px solid black;
+}
+
+.grid-square.ship-spot {
+  background-color: green;
+}
+
+.grid-square.hit {
+  background-color: red;
+}
+
+.grid-square.miss {
+  background-color: gray;
 }

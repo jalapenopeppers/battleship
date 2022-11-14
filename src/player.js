@@ -18,11 +18,12 @@ function Player(_name) {
       coord = [Math.floor(Math.random() * 10 + 1),
         Math.floor(Math.random() * 10 + 1)];
     }
-    gameboard.receiveAttack(coord);
+    let returnVal = gameboard.receiveAttack(coord);
     if (gameboard.areAllShipsSunk()) {
       // other player wins
       this.hasWon = false;
     }
+    return returnVal;
   }
   function reset() {
     this.hasWon = null;
@@ -31,6 +32,7 @@ function Player(_name) {
   
   const returnedObj = {
     hasWon,
+    gameboard,
     placeShip,
     receiveMove,
     reset,
