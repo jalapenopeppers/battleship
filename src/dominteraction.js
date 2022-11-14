@@ -1,0 +1,5 @@
+const DOMInteraction = (() => {
+  
+});
+
+export {DOMInteraction};

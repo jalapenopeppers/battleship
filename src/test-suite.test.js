@@ -68,3 +68,21 @@ test('Players can take turns attacking', () => {
   p1.receiveMove([1, 3]); // p2 should win, p1 lost
   expect(p1.hasWon).toBe(false);
 });
+
+test('Players reset correctly when reset is called', ()  => {
+  let p1 = Player();
+  p1.placeShip([1, 1], 1, 'vertical');
+  p1.receiveMove([1, 1]);
+  expect(p1.hasWon).toBe(false);
+  p1.reset();
+  expect(p1.hasWon).toBe(null);
+});
+
+test('Changing player names works', () => {
+  let p1 = Player('player1');
+  expect(p1.name).toBe('player1');
+  p1.name = 'iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii'; // too long, doesnt work
+  expect(p1.name).toBe('player1');
+  p1.name = 'another player';
+  expect(p1.name).toBe('another player');
+});
