@@ -22,7 +22,22 @@ body {
   align-content: space-between;
 }
 
-.p1-grid-container {
+.player-data-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10%;
+}
+
+.p1-container {
+  justify-self: end;
+}
+.p2-container {
+  justify-self: start;
+}
+
+.p1-grid-container,
+.p2-grid-container {
   width: 300px;
   height: 300px;
   display: grid;

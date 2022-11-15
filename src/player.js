@@ -1,6 +1,6 @@
 const Gameboard = require('./gameboard.js');
 
-function Player(_name) {
+function Player(_name, isBot = false) {
   // should know if he won
   // should know which gameboard hes using
   // should be able to make moves on gameboard
@@ -33,6 +33,7 @@ function Player(_name) {
   const returnedObj = {
     hasWon,
     gameboard,
+    isBot,
     placeShip,
     receiveMove,
     reset,
