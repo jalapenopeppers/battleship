@@ -94,6 +94,17 @@ function Gameboard() {
     }
     return true;
   }
+  // A helper function for searching for a coord within an array of coords
+  function isCoordInArray(coord, arr) {
+    for (let i = 0; i < arr.length; i++) {
+      let testCoord = arr[i];
+      if (testCoord[0] === coord[0] &&
+        testCoord[1] === coord[1]) {
+        return true;
+      }
+    }
+    return false;
+  }
   
   return {
     placeShip,
@@ -101,7 +112,9 @@ function Gameboard() {
     receiveAttack,
     isAttackValid,
     areAllShipsSunk,
+    isCoordInArray,
     shipList,
+    hitShots,
     missedShots,
   }
 }

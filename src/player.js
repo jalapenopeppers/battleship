@@ -15,8 +15,15 @@ function Player(_name, isBot = false) {
     // this function can be called with no args if
     //   the opposing player is a bot
     if (coord === null) {
-      coord = [Math.floor(Math.random() * 10 + 1),
-        Math.floor(Math.random() * 10 + 1)];
+      /* 
+        Quick and dirty way to make bot pick a valid coord.
+        Refactor so it randomly picks one of the available coords from
+          an array pf available coords, reducing computations.
+      */
+      do {
+        coord = [Math.floor(Math.random() * 10 + 1),
+          Math.floor(Math.random() * 10 + 1)];
+      } while (this.gameboard.receiveAttack(coord) === null);
     }
     let returnVal = gameboard.receiveAttack(coord);
     if (gameboard.areAllShipsSunk()) {
