@@ -105,6 +105,12 @@ function Gameboard() {
     }
     return false;
   }
+  function reset() {
+    shipList.splice(0, shipList.length);
+    missedShots.splice(0, missedShots.length);
+    allShots.splice(0, allShots.length);
+    hitShots.splice(0, hitShots.length);
+  }
   
   return {
     placeShip,
@@ -113,6 +119,7 @@ function Gameboard() {
     isAttackValid,
     areAllShipsSunk,
     isCoordInArray,
+    reset,
     shipList,
     hitShots,
     missedShots,

@@ -18,6 +18,12 @@ const DOMInteraction = (() => {
     p1Obj = newp1Obj;
     p2Obj = newp2Obj;
     // currentPlayer = newCurrentPlayer;
+    acceptGridinput = true;
+    // Attach required event handlers
+    let resetButton = document.querySelector('button.reset-game-button');
+    resetButton.addEventListener('click', (e) => {
+      Gameloop.resetGame();
+    });
   }
   function changeInstructionsTo(str) {
     let instructionsText = document.querySelector('.instructions-display-container');
@@ -99,16 +105,44 @@ const DOMInteraction = (() => {
           gridSquaresArr[indexCounter].classList.add('hit');
         } else if (playerObj.gameboard.isCoordInArray(coord, playerObj.gameboard.missedShots)) {
           gridSquaresArr[indexCounter].classList.add('miss');
+        } else {
+          gridSquaresArr[indexCounter].classList.remove('hit');
+          gridSquaresArr[indexCounter].classList.remove('miss');
+          gridSquaresArr[indexCounter].classList.add('unplayed');
         }
         indexCounter++;
       }
     }
+  }
+  // Ends game and does all DOM related stuff when game ends
+  function endGame() {
+    acceptGridinput = false;
+  }
+  function destroyGrids() {
+    let allGridSquaresArr = document.querySelectorAll('.grid-square');
+    for (let i = 0; i < allGridSquaresArr.length; i++) {
+      allGridSquaresArr[i].remove();
+    }
+  }
+  // Resets game back to ship placement
+  function resetGame(newp1Obj, newp2Obj) {
+    // Erase boards by refreshing grid after reattaching new player objects
+    p1Obj = newp1Obj;
+    p2Obj = newp2Obj;
+    acceptGridinput = true;
+    destroyGrids();
+    createGrids();
+    // refreshGrid('.p1-grid-container', p1Obj);
+    // refreshGrid('.p2-grid-container', p2Obj);
+
   }
   return {
     setUp,
     changeInstructionsTo,
     createGrids,
     refreshGrid,
+    endGame,
+    resetGame,
   }
 })();
 

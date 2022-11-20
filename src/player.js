@@ -34,7 +34,7 @@ function Player(_name, isBot = false) {
   }
   function reset() {
     this.hasWon = null;
-    this.gameboard = Gameboard();
+    this.gameboard.reset();
   }
   
   const returnedObj = {

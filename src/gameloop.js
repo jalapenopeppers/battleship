@@ -2,8 +2,8 @@ const Player = require('./player.js');
 import { DOMInteraction } from './dominteraction.js';
 
 const Gameloop = (() => {
-  const p1 = Player('P1', false);
-  const p2 = Player('Computer', true);
+  let p1 = Player('P1', false);
+  let p2 = Player('Computer', true);
   let currentPlayer = 'p1';
 
   function checkWinner() {
@@ -12,12 +12,16 @@ const Gameloop = (() => {
       p2.hasWon = true;
       // show winner visually in DOM
       console.log('p2 has won!');
+      DOMInteraction.changeInstructionsTo('P2 has won!');
+      DOMInteraction.endGame();
       return true;
     }
     else if (p2.hasWon === false) {
       p1.hasWon = true;
       // show winner visually in DOM
       console.log('p1 has won!');
+      DOMInteraction.changeInstructionsTo('P1 has won!');
+      DOMInteraction.endGame();
       return true;
     }
     else {
@@ -39,6 +43,22 @@ const Gameloop = (() => {
     console.log(`currentPlayer shoudl now be ${this.currentPlayer}`);
     return false;
   }
+  function resetGame() {
+    p1.reset();
+    p2.reset();
+    this.currentPlayer = 'p1';
+    
+    // TEMP ship placement
+    DOMInteraction.changeInstructionsTo('Place your ships on the left board below.');
+    p1.placeShip([1, 1], 3, 'vertical');
+    p1.placeShip([2, 1], 2, 'horizontal');
+    p2.placeShip([1, 1], 3, 'vertical');
+    p2.placeShip([3, 1], 2, 'horizontal');
+    console.log(p1.gameboard.shipList);
+    console.log(p2.gameboard.shipList);
+
+    DOMInteraction.resetGame(p1, p2);
+  }
 
   // Give player obj references to DOMInteraction module
   DOMInteraction.setUp(p1, p2);
@@ -46,7 +66,7 @@ const Gameloop = (() => {
   // place ships
   DOMInteraction.changeInstructionsTo('Place your ships on the left board below.');
   p1.placeShip([1, 1], 3, 'vertical');
-  p1.placeShip([2, 1], 2, 'horizontal');
+  p1.placeShip([3, 1], 2, 'horizontal');
   p2.placeShip([1, 1], 3, 'vertical');
   p2.placeShip([2, 1], 2, 'horizontal');
 
@@ -63,6 +83,7 @@ const Gameloop = (() => {
   return {
     currentPlayer,
     checkWinner,
+    resetGame,
   }
 })();
 

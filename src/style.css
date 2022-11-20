@@ -48,6 +48,10 @@ body {
   border: 1px solid black;
 }
 
+.grid-square.unplayed {
+  background-color: white;
+}
+
 .grid-square.ship-spot {
   background-color: green;
 }
