@@ -96,8 +96,8 @@ const DOMInteraction = (() => {
   function refreshGrid(gridContainerSelector, playerObj) {
     let gridSquaresArr = document.querySelectorAll(`${gridContainerSelector} .grid-square`);
     let indexCounter = 0; // used to access gridSquaresArr
-    console.log(playerObj.gameboard.hitShots);
-    console.log(playerObj.gameboard.missedShots);
+    // console.log(playerObj.gameboard.hitShots);
+    // console.log(playerObj.gameboard.missedShots);
     for (let i = 1; i <= 10; i++) {
       for (let j = 1; j <= 10; j++) {
         let coord = [j, i];

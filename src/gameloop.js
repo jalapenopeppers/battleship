@@ -28,6 +28,7 @@ const Gameloop = (() => {
       // no one has won, next turn
       if (this.currentPlayer === 'p1') {
         this.currentPlayer = 'p2';
+        DOMInteraction.changeInstructionsTo('P2, make your move.');
         if (p2.isBot) {
           console.log('p2 is a bot, make an attack automatically');
           // make attack
@@ -38,6 +39,7 @@ const Gameloop = (() => {
         }
       } else {
         this.currentPlayer = 'p1';
+        DOMInteraction.changeInstructionsTo('P1, make your move.');
       }
     }
     console.log(`currentPlayer shoudl now be ${this.currentPlayer}`);
@@ -50,12 +52,15 @@ const Gameloop = (() => {
     
     // TEMP ship placement
     DOMInteraction.changeInstructionsTo('Place your ships on the left board below.');
-    p1.placeShip([1, 1], 3, 'vertical');
-    p1.placeShip([2, 1], 2, 'horizontal');
-    p2.placeShip([1, 1], 3, 'vertical');
-    p2.placeShip([3, 1], 2, 'horizontal');
-    console.log(p1.gameboard.shipList);
-    console.log(p2.gameboard.shipList);
+    // p1.placeShip([1, 1], 3, 'vertical');
+    // p1.placeShip([3, 1], 2, 'horizontal');
+    // p2.placeShip([1, 1], 3, 'vertical');
+    // p2.placeShip([3, 1], 2, 'horizontal');
+    // console.log(p1.gameboard.shipList);
+    // console.log(p2.gameboard.shipList);
+    p1.autoPlaceShips();
+    p2.autoPlaceShips();
+    DOMInteraction.changeInstructionsTo('P1, make your move.');
 
     DOMInteraction.resetGame(p1, p2);
   }
@@ -65,10 +70,13 @@ const Gameloop = (() => {
 
   // place ships
   DOMInteraction.changeInstructionsTo('Place your ships on the left board below.');
-  p1.placeShip([1, 1], 3, 'vertical');
-  p1.placeShip([3, 1], 2, 'horizontal');
-  p2.placeShip([1, 1], 3, 'vertical');
-  p2.placeShip([2, 1], 2, 'horizontal');
+  // p1.placeShip([1, 1], 3, 'vertical');
+  // p1.placeShip([3, 1], 2, 'horizontal');
+  // p2.placeShip([1, 1], 3, 'vertical');
+  // p2.placeShip([3, 1], 2, 'horizontal');
+  p1.autoPlaceShips();
+  p2.autoPlaceShips();
+  DOMInteraction.changeInstructionsTo('P1, make your move.');
 
   DOMInteraction.createGrids();
 

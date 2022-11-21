@@ -11,6 +11,9 @@ function Player(_name, isBot = false) {
   function placeShip(coord, length, orientation = 'horizontal') {
     gameboard.placeShip(coord, length, orientation);
   }
+  function autoPlaceShips() {
+    gameboard.autoPlaceShips();
+  }
   function receiveMove(coord = null) {
     // this function can be called with no args if
     //   the opposing player is a bot
@@ -42,6 +45,7 @@ function Player(_name, isBot = false) {
     gameboard,
     isBot,
     placeShip,
+    autoPlaceShips,
     receiveMove,
     reset,
     get name() { return _name },
